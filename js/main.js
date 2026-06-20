@@ -2,6 +2,7 @@ const CONFIG = {
   whatsappNumber: "595982592266",
   instagramUrl: "https://www.instagram.com/escuadronsonrisaodontologia/",
   facebookUrl: "https://www.facebook.com/profile.php?id=61558138700752",
+  mapsUrl: "https://share.google/sRRftZNQ6pIvHcOMs",
   mapsQuery: "Escuadrón Sonrisa Odontología"
 };
 
@@ -49,6 +50,12 @@ document.querySelectorAll("[data-instagram]").forEach((link) => {
 
 document.querySelectorAll("[data-facebook]").forEach((link) => {
   link.href = CONFIG.facebookUrl;
+  link.target = "_blank";
+  link.rel = "noopener";
+});
+
+document.querySelectorAll("[data-map]").forEach((link) => {
+  link.href = CONFIG.mapsUrl || `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(CONFIG.mapsQuery)}`;
   link.target = "_blank";
   link.rel = "noopener";
 });
