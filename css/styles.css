@@ -519,6 +519,18 @@ p {
   max-width: 590px;
 }
 
+.hero-copy h1 {
+  font-size: clamp(2.15rem, 9.4vw, 3.55rem);
+}
+
+.hero-copy h1 span {
+  display: block;
+}
+
+.hero-copy h1 span:first-child {
+  white-space: nowrap;
+}
+
 .hero-media {
   position: relative;
   min-height: 260px;
