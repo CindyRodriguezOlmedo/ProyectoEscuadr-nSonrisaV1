@@ -1,4 +1,4 @@
-:root {
+﻿:root {
   --cream: #fff8f2;
   --rose: #f9c6d3;
   --sky: #bfeaf5;
@@ -125,6 +125,19 @@ body.menu-open {
   z-index: 1;
 }
 
+.page-consejos main > .section:first-child {
+  padding-bottom: 16px;
+}
+
+.page-consejos main > .section:nth-child(2) {
+  padding-top: 6px;
+  padding-bottom: 28px;
+}
+
+.page-consejos main > .section:nth-child(3) {
+  padding-top: 30px;
+}
+
 .page-galeria main > .section:first-child {
   padding-bottom: 20px;
 }
@@ -165,14 +178,20 @@ textarea {
   left: 12px;
   z-index: 1000;
   transform: translateY(-140%);
+  opacity: 0;
+  pointer-events: none;
   background: var(--ink);
   color: #fff;
   padding: 10px 14px;
   border-radius: 999px;
+  transition: transform .18s ease, opacity .18s ease;
 }
 
-.skip-link:focus {
+.skip-link:focus,
+.skip-link:focus-visible {
   transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .site-header {
@@ -298,7 +317,7 @@ textarea {
 
 .primary-nav a[aria-current="page"],
 .primary-nav a:hover {
-  color: var(--primary);
+  color: var(--ink);
   background: var(--brand-sky-soft);
 }
 
@@ -317,6 +336,15 @@ textarea {
 
 .section.compact {
   padding-top: 32px;
+}
+
+#atajos {
+  padding-top: 14px;
+  padding-bottom: 24px;
+}
+
+#atajos + #experiencia {
+  padding-top: 18px;
 }
 
 .team-hero-section {
@@ -551,7 +579,7 @@ p {
 .hero-clean-green {
   width: 20%;
   height: 17%;
-  left: -4%;
+  left: 0;
   top: 39%;
   border-radius: 44% 56% 50% 50%;
 }
@@ -733,6 +761,9 @@ p {
 .story-link,
 .experience-note a {
   width: fit-content;
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
   color: var(--secondary);
   font-weight: 1000;
   text-decoration: underline;
@@ -742,9 +773,6 @@ p {
 
 .experience-note a {
   position: relative;
-  min-height: 38px;
-  display: inline-flex;
-  align-items: center;
   padding-right: 48px;
 }
 
@@ -755,7 +783,7 @@ p {
   top: 50%;
   width: 42px;
   height: 42px;
-  background: url("../assets/ratoncitos/ratoncitoFormulario.png") center / contain no-repeat;
+  background: url("../assets/ratoncitos/ratoncitoFormulario.webp") center / contain no-repeat;
   opacity: .86;
   transform: translateY(-50%) rotate(4deg);
   mix-blend-mode: multiply;
@@ -785,14 +813,6 @@ p {
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: 20px;
-}
-
-.experience-card .experience-img-contain {
-  object-fit: contain;
-  object-position: center;
-  background:
-    linear-gradient(135deg, rgba(255, 232, 163, .26), rgba(191, 234, 245, .18)),
-    #8f552f;
 }
 
 .experience-card h3,
@@ -915,7 +935,7 @@ p {
 
 .btn-primary {
   background: var(--primary);
-  color: #fff;
+  color: #30345f;
   box-shadow: 0 14px 28px rgba(122, 191, 250, .3);
 }
 
@@ -1338,13 +1358,15 @@ p {
 }
 
 .page-consejos .tip-card {
-  min-height: 142px;
+  min-height: 0;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 92px;
+  grid-template-columns: minmax(0, 1fr) 72px;
   grid-template-rows: auto auto auto;
-  align-items: center;
-  column-gap: 12px;
-  padding: 18px 14px 18px 18px;
+  align-items: start;
+  column-gap: 8px;
+  row-gap: 4px;
+  padding: 14px 12px 12px 14px;
+  gap: 4px 8px;
 }
 
 .page-consejos .tip-card::before {
@@ -1359,18 +1381,24 @@ p {
 }
 
 .page-consejos .tip-card h3 {
-  align-self: end;
+  margin-top: 3px;
+  align-self: start;
+  font-size: 1.03rem;
+  line-height: 1.08;
 }
 
 .page-consejos .tip-card p {
   align-self: start;
+  margin-top: 0;
+  font-size: .9rem;
+  line-height: 1.38;
 }
 
 .tip-illustration {
   grid-column: 2;
   grid-row: 1 / 4;
-  width: 92px;
-  height: 92px;
+  width: 72px;
+  height: 72px;
   object-fit: contain;
   justify-self: end;
   align-self: center;
@@ -1378,24 +1406,24 @@ p {
 }
 
 .page-consejos .tip-card:nth-child(1) .tip-illustration {
-  width: 98px;
-  height: 98px;
+  width: 78px;
+  height: 78px;
 }
 
 .page-consejos .tip-card:nth-child(2) .tip-illustration {
-  width: 100px;
-  height: 100px;
+  width: 80px;
+  height: 80px;
 }
 
 .page-consejos .tip-card:nth-child(3) .tip-illustration,
 .page-consejos .tip-card:nth-child(5) .tip-illustration {
-  width: 90px;
-  height: 90px;
+  width: 72px;
+  height: 72px;
 }
 
 .page-consejos .tip-card:nth-child(6) .tip-illustration {
-  width: 92px;
-  height: 92px;
+  width: 74px;
+  height: 74px;
 }
 
 .chip {
@@ -1403,11 +1431,11 @@ p {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 8px 11px;
+  padding: 6px 9px;
   border-radius: 999px;
   background: rgba(255, 255, 255, .68);
   color: var(--secondary);
-  font-size: .86rem;
+  font-size: .78rem;
   font-weight: 900;
 }
 
@@ -2262,10 +2290,10 @@ p {
   left: 12px;
   top: 78px;
   z-index: 1;
-  min-height: 38px;
+  min-height: 42px;
   display: inline-flex;
   align-items: center;
-  padding: 0 14px;
+  padding: 0 16px;
   border-radius: 999px;
   background: rgba(255, 255, 255, .94);
   color: #4c9fe2;
@@ -2366,7 +2394,7 @@ p {
   width: 100%;
   justify-self: center;
   display: grid;
-  grid-template-columns: 1fr 36px 36px 1fr;
+  grid-template-columns: 1fr 44px 44px 1fr;
   justify-content: center;
   gap: 8px 10px;
   margin-top: 0;
@@ -2388,9 +2416,9 @@ p {
 }
 
 .footer-link {
-  width: 36px;
-  height: 36px;
-  min-height: 36px;
+  width: 44px;
+  height: 44px;
+  min-height: 44px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -2467,6 +2495,9 @@ p {
   color: inherit;
   font-weight: inherit;
   text-decoration: none;
+  min-height: 28px;
+  display: inline-flex;
+  align-items: center;
 }
 
 .wa-float {
