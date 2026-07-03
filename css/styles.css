@@ -2486,6 +2486,87 @@ p {
   gap: 12px;
 }
 
+.home-care-section {
+  background:
+    radial-gradient(circle at 100% 8%, rgba(255, 232, 163, .2), transparent 128px),
+    radial-gradient(circle at 0% 84%, rgba(191, 234, 245, .2), transparent 140px),
+    var(--cream);
+}
+
+.home-care-section .section-head {
+  margin-bottom: 18px;
+}
+
+.home-care-section .benefit {
+  position: relative;
+  overflow: hidden;
+  align-items: center;
+  min-height: 88px;
+  padding: 15px;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 232, 163, .2), transparent 88px),
+    linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(232, 246, 255, .48));
+  border-color: rgba(191, 234, 245, .58);
+  box-shadow: 0 12px 26px rgba(74, 78, 122, .055);
+}
+
+.home-care-section .benefit::after {
+  content: "";
+  position: absolute;
+  right: -22px;
+  bottom: -24px;
+  width: 76px;
+  height: 76px;
+  background: url("../assets/puzzles/puzzle-yellow.png") center / contain no-repeat;
+  opacity: .16;
+  transform: rotate(18deg);
+  pointer-events: none;
+}
+
+.home-care-section .benefit .mark {
+  background: transparent;
+  box-shadow: none;
+  font-size: 0;
+}
+
+.home-care-section .benefit .mark::before {
+  content: "";
+  width: 34px;
+  height: 34px;
+  background: url("../assets/puzzles/puzzle-blue.png") center / contain no-repeat;
+  opacity: .74;
+  transform: rotate(-8deg);
+}
+
+.home-care-section .benefit:nth-child(2) {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(216, 199, 255, .2), transparent 88px),
+    linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(255, 248, 242, .68));
+  border-color: rgba(216, 199, 255, .45);
+}
+
+.home-care-section .benefit:nth-child(2) .mark::before {
+  background-image: url("../assets/puzzles/puzzle-purple.png");
+  transform: rotate(12deg);
+}
+
+.home-care-section .benefit:nth-child(2)::after {
+  background-image: url("../assets/puzzles/puzzle-pink.png");
+  opacity: .13;
+}
+
+.home-care-section .benefit:nth-child(3) {
+  background:
+    radial-gradient(circle at 100% 0%, rgba(200, 244, 222, .22), transparent 88px),
+    linear-gradient(135deg, rgba(255, 255, 255, .95), rgba(255, 232, 163, .22));
+  border-color: rgba(200, 244, 222, .54);
+}
+
+.home-care-section .benefit:nth-child(3) .mark::before {
+  background-image: url("../assets/puzzles/puzzle-green.png");
+  transform: rotate(-14deg);
+}
+
 .info-card > h3 + .benefits {
   margin-top: 12px;
 }
@@ -2651,13 +2732,57 @@ p {
 .team-hero-section .benefit > .mark {
   align-self: center;
   font-size: 0;
+  background: transparent;
+  box-shadow: none;
 }
 
 .team-hero-section .benefit > .mark::before {
-  content: "+";
-  font-size: .95rem;
-  line-height: 1;
-  transform: translateY(-.5px);
+  content: "";
+  width: 34px;
+  height: 34px;
+  background: url("../assets/puzzles/puzzle-blue.png") center / contain no-repeat;
+  opacity: .74;
+  transform: rotate(-10deg);
+}
+
+.team-hero-section .benefit {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 100% 8%, rgba(255, 232, 163, .2), transparent 82px),
+    linear-gradient(135deg, rgba(255, 255, 255, .9), rgba(232, 246, 255, .5));
+  border-color: rgba(191, 234, 245, .58);
+  box-shadow: 0 12px 26px rgba(74, 78, 122, .055);
+}
+
+.team-hero-section .benefit::after {
+  content: "";
+  position: absolute;
+  right: -24px;
+  bottom: -26px;
+  width: 76px;
+  height: 76px;
+  background: url("../assets/puzzles/puzzle-yellow.png") center / contain no-repeat;
+  opacity: .16;
+  transform: rotate(20deg);
+  pointer-events: none;
+}
+
+.team-hero-section .benefit:nth-of-type(2) {
+  background:
+    radial-gradient(circle at 0% 100%, rgba(216, 199, 255, .22), transparent 86px),
+    linear-gradient(135deg, rgba(255, 255, 255, .92), rgba(255, 248, 242, .72));
+  border-color: rgba(216, 199, 255, .46);
+}
+
+.team-hero-section .benefit:nth-of-type(2) > .mark::before {
+  background-image: url("../assets/puzzles/puzzle-purple.png");
+  transform: rotate(12deg);
+}
+
+.team-hero-section .benefit:nth-of-type(2)::after {
+  background-image: url("../assets/puzzles/puzzle-pink.png");
+  opacity: .13;
 }
 
 .portrait {
@@ -3234,6 +3359,7 @@ p {
 .form-step {
   display: none;
   gap: 12px;
+  scroll-margin-top: calc(var(--header-h) + 14px);
 }
 
 .form-step.is-active {
@@ -3261,7 +3387,7 @@ p {
 
 .form-row {
   display: grid;
-  grid-template-columns: minmax(102px, .72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(148px, .98fr) minmax(0, 1.02fr);
   gap: 10px;
 }
 
@@ -3290,6 +3416,14 @@ p {
 .field textarea {
   min-height: 96px;
   resize: vertical;
+}
+
+.wizard .form-step textarea {
+  min-height: 82px;
+}
+
+.wizard .form-step[aria-label="Salud general"] textarea {
+  min-height: 74px;
 }
 
 .field.is-invalid input,
@@ -3376,17 +3510,48 @@ p {
     padding-bottom: 92px;
   }
 
+  .wizard-top {
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .wizard-count {
+    padding: 5px 9px;
+    font-size: .72rem;
+  }
+
+  .wizard-stepper {
+    display: none;
+  }
+
+  .progress {
+    height: 6px;
+  }
+
   .wizard-actions {
     position: sticky;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    margin: 0 -16px;
-    padding: 14px 16px 18px;
-    background: rgba(255, 255, 255, .96);
-    border-top: 1px solid rgba(74, 78, 122, .1);
-    box-shadow: 0 -12px 30px rgba(74, 78, 122, .07);
+    bottom: 10px;
+    left: auto;
+    width: auto;
+    margin: 20px 0 -76px;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    backdrop-filter: none;
     z-index: 5;
+  }
+
+  .field-age select {
+    padding-inline: 10px 22px;
+    font-size: .78rem;
+    font-weight: 900;
+  }
+
+  .form-row .field-family input {
+    padding-inline: 12px;
+    font-size: .9rem;
   }
 }
 
@@ -3396,16 +3561,25 @@ p {
   border-radius: 18px;
 }
 
+.wizard-actions .btn-soft {
+  border: 1px solid color-mix(in srgb, var(--secondary) 38%, white);
+  box-shadow: 0 8px 18px rgba(126, 111, 208, .08);
+}
+
+.page-formulario .wa-float {
+  display: none;
+}
+
 .wizard-actions .btn-primary {
   background: linear-gradient(135deg, #69b8ff, #83c7ff);
   color: #fff;
-  box-shadow: 0 15px 30px rgba(105, 184, 255, .32);
+  box-shadow: 0 8px 18px rgba(105, 184, 255, .18);
 }
 
 .wizard-actions .btn-pink {
   background: linear-gradient(135deg, #7abffa, #8b72dc);
   color: #fff;
-  box-shadow: 0 16px 30px rgba(122, 120, 232, .28);
+  box-shadow: 0 8px 18px rgba(122, 120, 232, .18);
 }
 
 .wizard-actions .btn-primary span {
@@ -3502,9 +3676,29 @@ p {
   position: relative;
   overflow: hidden;
   border-radius: 24px;
-  background: #fff;
+  background:
+    radial-gradient(circle at 100% 0%, rgba(255, 232, 163, .22), transparent 92px),
+    linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(239, 249, 255, .74));
   border: 1px solid rgba(122, 191, 250, .2);
   box-shadow: 0 18px 38px rgba(74, 78, 122, .1);
+}
+
+.home-care-section .location-card {
+  border-color: rgba(191, 234, 245, .52);
+  box-shadow: 0 14px 30px rgba(74, 78, 122, .075);
+}
+
+.home-care-section .location-card::after {
+  content: "";
+  position: absolute;
+  right: -20px;
+  top: -20px;
+  width: 78px;
+  height: 78px;
+  background: url("../assets/puzzles/puzzle-yellow.png") center / contain no-repeat;
+  opacity: .2;
+  transform: rotate(18deg);
+  pointer-events: none;
 }
 
 .map-heading {

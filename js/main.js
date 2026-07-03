@@ -183,7 +183,12 @@ if (wizard) {
   let current = 0;
 
   const scrollWizardIntoView = () => {
-    wizard.scrollIntoView({ behavior: "smooth", block: "start" });
+    const activeStep = steps[current];
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    (activeStep || wizard).scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "start"
+    });
   };
 
   const clearFeedback = () => {
