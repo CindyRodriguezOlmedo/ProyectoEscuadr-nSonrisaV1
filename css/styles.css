@@ -246,9 +246,20 @@ body.menu-open {
 }
 
 .page-contacto .benefit {
-  align-items: center;
-  padding: 12px;
+  display: grid;
+  grid-template-columns: 54px minmax(0, 1fr);
+  gap: 12px;
+  align-items: stretch;
+  min-height: 72px;
+  padding: 0;
   border-radius: 18px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, .82);
+}
+
+.page-contacto .benefit > div {
+  align-self: center;
+  padding: 12px 12px 12px 0;
 }
 
 .page-contacto .benefit h3 {
@@ -258,6 +269,20 @@ body.menu-open {
 .page-contacto .benefit p {
   font-size: .9rem;
   line-height: 1.25;
+}
+
+.page-contacto .mark.contact-icon {
+  align-self: stretch;
+  width: 54px;
+  height: 100%;
+  min-height: 72px;
+  border-radius: 18px 0 0 18px;
+  box-shadow: inset -1px 0 0 rgba(255, 255, 255, .72);
+}
+
+.page-contacto .contact-icon::before {
+  width: 23px;
+  height: 23px;
 }
 
 .page-contacto .contact-map-section {
@@ -1060,9 +1085,9 @@ p {
   gap: 6px;
   font-size: .68rem;
   color: #fff;
-  background: linear-gradient(135deg, #6ebdff, #5c9df4);
+  background: linear-gradient(135deg, #79c5ff, #5e9ff4);
   border: 0;
-  box-shadow: 0 18px 34px rgba(92, 157, 244, .28);
+  box-shadow: 0 18px 34px rgba(94, 159, 244, .28);
 }
 
 .hero .btn-primary::after {
@@ -1233,8 +1258,16 @@ p {
 }
 
 .service-promise span:nth-child(2) {
-  --promise-icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='black' d='M8 11a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm0-2a2 2 0 1 0 0-4 2 2 0 0 0 0 4Zm8.5 2.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Zm0-2a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3ZM2 21v-2.4C2 15.5 4.6 13 8 13s6 2.5 6 5.6V21H2Zm2-2h8v-.4C12 16.6 10.3 15 8 15s-4 1.6-4 3.6v.4Zm11.2 2v-2h4.8v-.3c0-1.7-1.4-3.1-3.3-3.1-.7 0-1.4.2-2 .5l-.9-1.8c.9-.5 1.9-.7 2.9-.7 3 0 5.3 2.2 5.3 5.1V21h-6.8Z'/%3E%3C/svg%3E");
   --promise-icon-color: #69aef7;
+}
+
+.service-promise span:nth-child(2)::after {
+  width: 64px;
+  height: 48px;
+  top: -5px;
+  background: url("../assets/icons/icon-ninhosyadolescentes.png") center / contain no-repeat;
+  -webkit-mask: none;
+  mask: none;
 }
 
 .service-promise span:nth-child(3) {
@@ -1813,16 +1846,16 @@ p {
   }
 
   .hero-tooth-line {
-    left: -44%;
-    bottom: 21%;
+    left: -52%;
+    bottom: 24%;
     width: 42px;
     height: 50px;
     opacity: .82;
   }
 
   .hero-spark-line {
-    left: -8%;
-    bottom: 13%;
+    left: 2%;
+    bottom: 10%;
     width: 32px;
     height: 44px;
     opacity: .82;
@@ -1900,6 +1933,16 @@ p {
 
   .hero-ground-wave {
     bottom: 4px;
+  }
+
+  .hero-tooth-line {
+    left: -50%;
+    bottom: 23%;
+  }
+
+  .hero-spark-line {
+    left: -2%;
+    bottom: 9%;
   }
 
 .home-trust-section {
@@ -2498,11 +2541,12 @@ p {
 }
 
 .home-care-section .benefit {
+  --side-puzzle: linear-gradient(180deg, rgba(229, 214, 255, .82), rgba(229, 214, 255, .44));
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   align-items: center;
-  min-height: 88px;
-  padding: 15px;
+  min-height: 98px;
+  padding: 16px 16px 16px 48px;
   background:
     radial-gradient(circle at 100% 0%, rgba(255, 232, 163, .2), transparent 88px),
     linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(232, 246, 255, .48));
@@ -2510,35 +2554,34 @@ p {
   box-shadow: 0 12px 26px rgba(74, 78, 122, .055);
 }
 
-.home-care-section .benefit::after {
+.home-care-section .benefit::before {
   content: "";
   position: absolute;
-  right: -22px;
-  bottom: -24px;
-  width: 76px;
-  height: 76px;
-  background: url("../assets/puzzles/puzzle-yellow.png") center / contain no-repeat;
-  opacity: .16;
-  transform: rotate(18deg);
+  left: -13px;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  background: var(--side-puzzle);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='-13 0 59 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 0H46V39C33 39 25 48 25 60C25 72 33 81 46 81V120H17C10 120 6 116 6 109V76H-4C-10 76-13 70-13 60C-13 50-10 44-4 44H6V11C6 4 10 0 17 0Z' fill='black'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg viewBox='-13 0 59 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 0H46V39C33 39 25 48 25 60C25 72 33 81 46 81V120H17C10 120 6 116 6 109V76H-4C-10 76-13 70-13 60C-13 50-10 44-4 44H6V11C6 4 10 0 17 0Z' fill='black'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 8px 14px rgba(126, 111, 208, .08));
   pointer-events: none;
 }
 
+.home-care-section .benefit::after {
+  content: none;
+}
+
 .home-care-section .benefit .mark {
-  background: transparent;
-  box-shadow: none;
-  font-size: 0;
+  display: none;
 }
 
 .home-care-section .benefit .mark::before {
-  content: "";
-  width: 34px;
-  height: 34px;
-  background: url("../assets/puzzles/puzzle-blue.png") center / contain no-repeat;
-  opacity: .74;
-  transform: rotate(-8deg);
+  content: none;
 }
 
 .home-care-section .benefit:nth-child(2) {
+  --side-puzzle: linear-gradient(180deg, rgba(254, 206, 229, .84), rgba(254, 206, 229, .46));
   background:
     radial-gradient(circle at 100% 0%, rgba(216, 199, 255, .2), transparent 88px),
     linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(255, 248, 242, .68));
@@ -2551,11 +2594,11 @@ p {
 }
 
 .home-care-section .benefit:nth-child(2)::after {
-  background-image: url("../assets/puzzles/puzzle-pink.png");
-  opacity: .13;
+  content: none;
 }
 
 .home-care-section .benefit:nth-child(3) {
+  --side-puzzle: linear-gradient(180deg, rgba(184, 230, 181, .78), rgba(184, 230, 181, .42));
   background:
     radial-gradient(circle at 100% 0%, rgba(200, 244, 222, .22), transparent 88px),
     linear-gradient(135deg, rgba(255, 255, 255, .95), rgba(255, 232, 163, .22));
@@ -2565,6 +2608,10 @@ p {
 .home-care-section .benefit:nth-child(3) .mark::before {
   background-image: url("../assets/puzzles/puzzle-green.png");
   transform: rotate(-14deg);
+}
+
+.home-care-section .benefit:nth-child(3)::after {
+  content: none;
 }
 
 .info-card > h3 + .benefits {
@@ -2730,24 +2777,19 @@ p {
 }
 
 .team-hero-section .benefit > .mark {
-  align-self: center;
-  font-size: 0;
-  background: transparent;
-  box-shadow: none;
+  display: none;
 }
 
 .team-hero-section .benefit > .mark::before {
-  content: "";
-  width: 34px;
-  height: 34px;
-  background: url("../assets/puzzles/puzzle-blue.png") center / contain no-repeat;
-  opacity: .74;
-  transform: rotate(-10deg);
+  content: none;
 }
 
 .team-hero-section .benefit {
+  --side-puzzle: linear-gradient(180deg, rgba(229, 214, 255, .82), rgba(229, 214, 255, .44));
   position: relative;
-  overflow: hidden;
+  overflow: visible;
+  min-height: 98px;
+  padding: 16px 16px 16px 48px;
   background:
     radial-gradient(circle at 100% 8%, rgba(255, 232, 163, .2), transparent 82px),
     linear-gradient(135deg, rgba(255, 255, 255, .9), rgba(232, 246, 255, .5));
@@ -2755,20 +2797,26 @@ p {
   box-shadow: 0 12px 26px rgba(74, 78, 122, .055);
 }
 
-.team-hero-section .benefit::after {
+.team-hero-section .benefit::before {
   content: "";
   position: absolute;
-  right: -24px;
-  bottom: -26px;
-  width: 76px;
-  height: 76px;
-  background: url("../assets/puzzles/puzzle-yellow.png") center / contain no-repeat;
-  opacity: .16;
-  transform: rotate(20deg);
+  left: -13px;
+  top: 0;
+  bottom: 0;
+  width: 48px;
+  background: var(--side-puzzle);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg viewBox='-13 0 59 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 0H46V39C33 39 25 48 25 60C25 72 33 81 46 81V120H17C10 120 6 116 6 109V76H-4C-10 76-13 70-13 60C-13 50-10 44-4 44H6V11C6 4 10 0 17 0Z' fill='black'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg viewBox='-13 0 59 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17 0H46V39C33 39 25 48 25 60C25 72 33 81 46 81V120H17C10 120 6 116 6 109V76H-4C-10 76-13 70-13 60C-13 50-10 44-4 44H6V11C6 4 10 0 17 0Z' fill='black'/%3E%3C/svg%3E") center / 100% 100% no-repeat;
+  filter: drop-shadow(0 8px 14px rgba(126, 111, 208, .08));
   pointer-events: none;
 }
 
+.team-hero-section .benefit::after {
+  content: none;
+}
+
 .team-hero-section .benefit:nth-of-type(2) {
+  --side-puzzle: linear-gradient(180deg, rgba(254, 206, 229, .84), rgba(254, 206, 229, .46));
   background:
     radial-gradient(circle at 0% 100%, rgba(216, 199, 255, .22), transparent 86px),
     linear-gradient(135deg, rgba(255, 255, 255, .92), rgba(255, 248, 242, .72));
@@ -2781,8 +2829,7 @@ p {
 }
 
 .team-hero-section .benefit:nth-of-type(2)::after {
-  background-image: url("../assets/puzzles/puzzle-pink.png");
-  opacity: .13;
+  content: none;
 }
 
 .portrait {
