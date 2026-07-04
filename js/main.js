@@ -154,6 +154,133 @@ if (monthlyNews) {
     });
 }
 
+const promoSection = document.querySelector("#promo");
+
+if (promoSection && "IntersectionObserver" in window) {
+  let promoConfettiPlayed = false;
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let promoAudioContext = null;
+
+  const getPromoAudioContext = () => {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if (!AudioContext) return null;
+    if (!promoAudioContext) promoAudioContext = new AudioContext();
+    if (promoAudioContext.state === "suspended") {
+      promoAudioContext.resume().catch(() => {});
+    }
+    return promoAudioContext;
+  };
+
+  const unlockPromoAudio = () => {
+    getPromoAudioContext();
+  };
+
+  ["pointerdown", "touchstart", "keydown"].forEach((eventName) => {
+    window.addEventListener(eventName, unlockPromoAudio, { once: true, passive: true });
+  });
+
+  const playPartyHorn = () => {
+    if (prefersReducedMotion) return;
+    const context = getPromoAudioContext();
+    if (!context) return;
+
+    try {
+      const now = context.currentTime;
+      const duration = .46;
+      const oscillator = context.createOscillator();
+      const vibrato = context.createOscillator();
+      const vibratoGain = context.createGain();
+      const gain = context.createGain();
+      const filter = context.createBiquadFilter();
+
+      oscillator.type = "sawtooth";
+      oscillator.frequency.setValueAtTime(360, now);
+      oscillator.frequency.exponentialRampToValueAtTime(980, now + .16);
+      oscillator.frequency.exponentialRampToValueAtTime(520, now + duration);
+
+      vibrato.type = "sine";
+      vibrato.frequency.setValueAtTime(18, now);
+      vibratoGain.gain.setValueAtTime(18, now);
+      vibrato.connect(vibratoGain);
+      vibratoGain.connect(oscillator.frequency);
+
+      filter.type = "bandpass";
+      filter.frequency.setValueAtTime(1250, now);
+      filter.Q.setValueAtTime(9, now);
+
+      gain.gain.setValueAtTime(.0001, now);
+      gain.gain.linearRampToValueAtTime(.055, now + .035);
+      gain.gain.exponentialRampToValueAtTime(.001, now + duration);
+
+      oscillator.connect(filter);
+      filter.connect(gain);
+      gain.connect(context.destination);
+      oscillator.start(now);
+      vibrato.start(now);
+      oscillator.stop(now + duration);
+      vibrato.stop(now + duration);
+    } catch {
+      // Some browsers block audio without a prior interaction; the visual celebration still runs.
+    }
+  };
+
+  const celebratePromo = () => {
+    if (prefersReducedMotion || promoConfettiPlayed) return;
+    if (typeof window.confetti !== "function") return;
+
+    promoConfettiPlayed = true;
+
+    const colors = ["#F9C6D3", "#BFEAF5", "#D8C7FF", "#C8F4DE", "#FFE8A3", "#7ABFFA"];
+    const baseOptions = {
+      colors,
+      disableForReducedMotion: true,
+      scalar: .78,
+      ticks: 145,
+      zIndex: 40
+    };
+
+    playPartyHorn();
+    window.confetti({
+      ...baseOptions,
+      particleCount: 34,
+      spread: 54,
+      startVelocity: 28,
+      origin: { x: .26, y: .58 }
+    });
+
+    window.setTimeout(() => {
+      playPartyHorn();
+      window.confetti({
+        ...baseOptions,
+        particleCount: 42,
+        spread: 68,
+        startVelocity: 34,
+        origin: { x: .74, y: .56 }
+      });
+    }, 220);
+
+    window.setTimeout(() => {
+      playPartyHorn();
+      window.confetti({
+        ...baseOptions,
+        particleCount: 28,
+        spread: 82,
+        startVelocity: 22,
+        origin: { x: .5, y: .46 }
+      });
+    }, 520);
+  };
+
+  const promoObserver = new IntersectionObserver((entries) => {
+    if (entries.some((entry) => entry.isIntersecting)) {
+      celebratePromo();
+      promoObserver.disconnect();
+    }
+  }, { threshold: .45 });
+
+  promoObserver.observe(promoSection);
+}
+
 if ("IntersectionObserver" in window) {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
@@ -203,20 +330,35 @@ if (wizard) {
 
   const setFieldVisibility = (wrapper, shouldHide) => {
     if (!wrapper) return;
-    wrapper.hidden = shouldHide;
+    wrapper.hidden = false;
+    wrapper.classList.toggle("is-disabled-by-patient", shouldHide);
     wrapper.querySelectorAll("input, select, textarea").forEach((field) => {
       if (!field.dataset.originalRequired) {
         field.dataset.originalRequired = String(field.required);
       }
+      if (!field.dataset.originalPlaceholder) {
+        field.dataset.originalPlaceholder = field.getAttribute("placeholder") || "";
+      }
+      if (field.tagName === "SELECT" && !field.dataset.originalOptions) {
+        field.dataset.originalOptions = field.innerHTML;
+      }
 
       if (shouldHide) {
         field.required = false;
-        field.disabled = true;
         field.value = "";
+        field.setAttribute("placeholder", "No aplica");
+        if (field.tagName === "SELECT") {
+          field.innerHTML = '<option selected>No aplica</option>';
+        }
+        field.disabled = true;
         clearFieldInvalid(field);
       } else {
         field.disabled = false;
+        if (field.tagName === "SELECT" && field.dataset.originalOptions) {
+          field.innerHTML = field.dataset.originalOptions;
+        }
         field.required = field.dataset.originalRequired === "true";
+        field.setAttribute("placeholder", field.dataset.originalPlaceholder);
       }
     });
   };
@@ -248,6 +390,10 @@ if (wizard) {
 
   const getCustomValidationMessage = (field) => {
     if (!field.checkValidity()) {
+      if (field.validity.valueMissing) {
+        const label = field.closest(".field")?.querySelector("label")?.textContent?.trim();
+        return label ? `Completá: ${label}.` : "Completá este campo para continuar.";
+      }
       return field.validationMessage || "Completá este campo para continuar.";
     }
     return "";
@@ -255,7 +401,11 @@ if (wizard) {
 
   const markFieldInvalid = (field) => {
     const wrapper = field.closest(".field");
-    if (wrapper) wrapper.classList.add("is-invalid");
+    if (wrapper) {
+      wrapper.classList.remove("is-invalid");
+      void wrapper.offsetWidth;
+      wrapper.classList.add("is-invalid");
+    }
     field.setAttribute("aria-invalid", "true");
   };
 

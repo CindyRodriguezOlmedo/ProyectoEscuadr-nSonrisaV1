@@ -1901,6 +1901,13 @@ p {
   }
 }
 
+@media (max-width: 679px) {
+  .hero-tooth-line,
+  .hero-spark-line {
+    display: none;
+  }
+}
+
 @media (max-width: 380px) and (min-height: 721px) {
   .hero-media {
     top: clamp(164px, calc(164px + ((100svh - 720px) * .5)), 214px);
@@ -3618,6 +3625,15 @@ p {
   grid-template-columns: minmax(0, 1fr);
 }
 
+.field.is-disabled-by-patient {
+  position: relative;
+  opacity: .82;
+}
+
+.field.is-disabled-by-patient label {
+  color: rgba(74, 78, 122, .48);
+}
+
 .form-row .field-family label {
   font-size: .9rem;
 }
@@ -3640,6 +3656,22 @@ p {
   font-size: .96rem;
   transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
 }
+
+.field.is-disabled-by-patient input,
+.field.is-disabled-by-patient select,
+.field.is-disabled-by-patient textarea {
+  border-color: rgba(74, 78, 122, .14);
+  background: linear-gradient(180deg, rgba(245, 246, 248, .94), rgba(238, 240, 244, .9));
+  color: rgba(74, 78, 122, .46);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .72);
+  cursor: not-allowed;
+}
+
+.field.is-disabled-by-patient input::placeholder,
+.field.is-disabled-by-patient textarea::placeholder {
+  color: rgba(111, 115, 144, .48);
+}
+
 
 .field:nth-of-type(2n) input,
 .field:nth-of-type(2n) select,
@@ -3669,8 +3701,28 @@ p {
 .field.is-invalid input,
 .field.is-invalid select,
 .field.is-invalid textarea {
-  border-color: #e74c3c;
-  background: #fff5f5;
+  border-color: #ef6f82;
+  background: linear-gradient(180deg, #fff, #fff3f6);
+  box-shadow: 0 0 0 4px rgba(249, 198, 211, .42), 0 12px 28px rgba(239, 111, 130, .12);
+  animation: fieldNudge .28s ease;
+}
+
+.field.is-invalid label {
+  color: #c64f68;
+}
+
+@keyframes fieldNudge {
+  0%, 100% {
+    transform: translateX(0);
+  }
+
+  34% {
+    transform: translateX(-3px);
+  }
+
+  68% {
+    transform: translateX(3px);
+  }
 }
 
 .wizard-feedback {
@@ -3697,6 +3749,14 @@ p {
   border-color: var(--brand-sky);
   background: linear-gradient(180deg, #fff, var(--brand-sky-soft));
   box-shadow: 0 0 0 4px rgba(232, 246, 255, .95), 0 12px 28px rgba(122, 191, 250, .13);
+}
+
+.field.is-invalid input:focus,
+.field.is-invalid select:focus,
+.field.is-invalid textarea:focus {
+  border-color: #ef6f82;
+  background: linear-gradient(180deg, #fff, #fff3f6);
+  box-shadow: 0 0 0 4px rgba(249, 198, 211, .42), 0 12px 28px rgba(239, 111, 130, .12);
 }
 
 .field input:required:valid,
@@ -3784,9 +3844,9 @@ p {
   }
 
   .field-age select {
-    padding-inline: 10px 22px;
-    font-size: .78rem;
-    font-weight: 900;
+    padding-inline: 13px 34px;
+    font-size: .96rem;
+    font-weight: 700;
   }
 
   .form-row .field-family input {
@@ -4607,7 +4667,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
     position: absolute;
     left: 0;
     right: 0;
-    bottom: 118px;
+    bottom: 72px;
     z-index: 0;
     height: 240px;
     pointer-events: none;
@@ -4657,10 +4717,15 @@ body:not(.page-consejos) #experiencia + .soft-band {
   }
 
   .hero-photo-blob {
-    right: 4%;
-    top: 7%;
-    width: 68%;
-    height: 80%;
+    right: 8%;
+    top: 12%;
+    width: 52%;
+    height: 68%;
+    opacity: .42;
+    filter: blur(.2px);
+    background:
+      radial-gradient(circle at 44% 34%, rgba(255, 244, 205, .68), transparent 48%),
+      linear-gradient(154deg, rgba(255, 232, 163, .3) 0%, rgba(251, 183, 71, .2) 100%);
   }
 
   .hero-ground-wave {
@@ -4676,10 +4741,11 @@ body:not(.page-consejos) #experiencia + .soft-band {
   }
 
   .hero-tooth-line {
-    left: -42%;
+    left: -57%;
     bottom: 17%;
-    width: 62px;
-    height: 74px;
+    width: 54px;
+    height: 64px;
+    opacity: .72;
   }
 
   .hero-spark-line {
