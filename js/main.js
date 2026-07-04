@@ -330,6 +330,7 @@ if (wizard) {
 
   const setFieldVisibility = (wrapper, shouldHide) => {
     if (!wrapper) return;
+    const wasDisabledByPatient = wrapper.classList.contains("is-disabled-by-patient");
     wrapper.hidden = false;
     wrapper.classList.toggle("is-disabled-by-patient", shouldHide);
     wrapper.querySelectorAll("input, select, textarea").forEach((field) => {
@@ -354,7 +355,7 @@ if (wizard) {
         clearFieldInvalid(field);
       } else {
         field.disabled = false;
-        if (field.tagName === "SELECT" && field.dataset.originalOptions) {
+        if (wasDisabledByPatient && field.tagName === "SELECT" && field.dataset.originalOptions) {
           field.innerHTML = field.dataset.originalOptions;
         }
         field.required = field.dataset.originalRequired === "true";
