@@ -180,6 +180,10 @@ if (wizard) {
   const prev = wizard.querySelector("[data-prev]");
   const next = wizard.querySelector("[data-next]");
   const send = wizard.querySelector("[data-send]");
+  const age = wizard.querySelector("[name='age']");
+  const guardianField = wizard.querySelector("[name='guardian']")?.closest(".field");
+  const pacifierField = wizard.querySelector("[name='pacifier']")?.closest(".field");
+  const behaviorField = wizard.querySelector("[name='behavior']")?.closest(".field");
   let current = 0;
 
   const scrollWizardIntoView = () => {
@@ -195,7 +199,38 @@ if (wizard) {
     if (feedback) feedback.textContent = "";
   };
 
+  const isPregnantPatient = () => age?.value === "Embarazada";
+
+  const setFieldVisibility = (wrapper, shouldHide) => {
+    if (!wrapper) return;
+    wrapper.hidden = shouldHide;
+    wrapper.querySelectorAll("input, select, textarea").forEach((field) => {
+      if (!field.dataset.originalRequired) {
+        field.dataset.originalRequired = String(field.required);
+      }
+
+      if (shouldHide) {
+        field.required = false;
+        field.disabled = true;
+        field.value = "";
+        clearFieldInvalid(field);
+      } else {
+        field.disabled = false;
+        field.required = field.dataset.originalRequired === "true";
+      }
+    });
+  };
+
+  const updatePatientTypeFields = () => {
+    const pregnant = isPregnantPatient();
+    wizard.classList.toggle("is-pregnant", pregnant);
+    setFieldVisibility(guardianField, pregnant);
+    setFieldVisibility(pacifierField, pregnant);
+    setFieldVisibility(behaviorField, pregnant);
+  };
+
   const updateWizard = () => {
+    updatePatientTypeFields();
     clearFeedback();
     steps.forEach((step, index) => step.classList.toggle("is-active", index === current));
     stepperItems.forEach((item, index) => {
@@ -232,7 +267,9 @@ if (wizard) {
 
   const stepIsValid = () => {
     clearFeedback();
-    const fields = Array.from(steps[current].querySelectorAll("input, select, textarea"));
+    updatePatientTypeFields();
+    const fields = Array.from(steps[current].querySelectorAll("input, select, textarea"))
+      .filter((field) => !field.disabled && !field.closest("[hidden]"));
     fields.forEach(clearFieldInvalid);
 
     const firstInvalid = fields.find((field) => {
@@ -268,6 +305,12 @@ if (wizard) {
     field.addEventListener("input", () => {
       clearFieldInvalid(field);
       if (feedback) feedback.textContent = "";
+      if (field === age) updatePatientTypeFields();
+    });
+    field.addEventListener("change", () => {
+      clearFieldInvalid(field);
+      if (feedback) feedback.textContent = "";
+      if (field === age) updatePatientTypeFields();
     });
   });
 
@@ -280,26 +323,28 @@ if (wizard) {
   send.addEventListener("click", () => {
     if (!stepIsValid()) return;
     const data = new FormData(wizard);
+    const pregnant = isPregnantPatient();
     const lines = [
       "Hola Escuadrón Sonrisa, quiero enviar el formulario previo:",
       "",
       `Paciente: ${data.get("childName") || "-"}`,
       `Edad: ${data.get("age") || "-"}`,
-      `Tutor responsable: ${data.get("guardian") || "-"}`,
+      ...(!pregnant ? [`Tutor responsable: ${data.get("guardian") || "-"}`] : []),
       `Motivo de consulta: ${data.get("reason") || "-"}`,
       `Primera visita: ${data.get("firstVisit") || "-"}`,
       `Dolor dental: ${data.get("pain") || "-"}`,
       `Antecedentes de caries: ${data.get("cavities") || "-"}`,
-      `Chupete o mamadera: ${data.get("pacifier") || "-"}`,
+      ...(!pregnant ? [`Chupete o mamadera: ${data.get("pacifier") || "-"}`] : []),
       `Alergias: ${data.get("allergies") || "-"}`,
       `Medicamentos: ${data.get("meds") || "-"}`,
       `Condiciones médicas: ${data.get("conditions") || "-"}`,
-      `Comportamiento en consultas: ${data.get("behavior") || "-"}`,
+      ...(!pregnant ? [`Comportamiento en consultas: ${data.get("behavior") || "-"}`] : []),
       `Horario preferido: ${data.get("schedule") || "-"}`,
       `Observaciones: ${data.get("notes") || "-"}`
     ];
     window.open(`https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(lines.join("\n"))}`, "_blank", "noopener");
   });
 
+  updatePatientTypeFields();
   updateWizard();
 }
