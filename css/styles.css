@@ -5705,6 +5705,33 @@ body:not(.page-consejos) #experiencia + .soft-band {
     filter: drop-shadow(0 -12px 24px rgba(122, 191, 250, .08));
   }
 
+  .hero-shell::before {
+    content: "";
+    position: absolute;
+    left: 18px;
+    bottom: 90px;
+    width: clamp(72px, 15vw, 110px);
+    height: clamp(72px, 15vw, 110px);
+    background: url("../assets/puzzles/puzzle-green.png") center / contain no-repeat;
+    opacity: .28;
+    transform: rotate(-14deg);
+    filter: drop-shadow(0 14px 18px rgba(74, 78, 122, .08));
+    z-index: 0;
+  }
+
+  .hero-shell::after {
+    left: 16px;
+    right: auto;
+    bottom: 150px;
+    width: clamp(84px, 16vw, 125px);
+    height: clamp(84px, 16vw, 125px);
+    background: url("../assets/puzzles/puzzle-yellow.png") center / contain no-repeat;
+    opacity: .26;
+    transform: rotate(18deg);
+    filter: drop-shadow(0 14px 20px rgba(74, 78, 122, .08));
+    z-index: 0;
+  }
+
   .hero-dots {
     display: none;
   }
@@ -5902,9 +5929,9 @@ body:not(.page-consejos) #experiencia + .soft-band {
       radial-gradient(circle at 38% 20%, rgba(182, 227, 255, .28) 0%, transparent 22%),
       radial-gradient(circle at 60% 26%, rgba(255, 236, 185, .28) 0%, transparent 24%),
       radial-gradient(circle at 80% 18%, rgba(206, 249, 227, .26) 0%, transparent 20%),
-      url("../assets/puzzles/puzzle-yellow.png") right bottom / clamp(90px, 18vw, 150px) no-repeat;
+      url("../assets/puzzles/puzzle-yellow.png") 18% 78% / clamp(84px, 16vw, 126px) no-repeat,
+      url("../assets/puzzles/puzzle-green.png") 42% 72% / clamp(76px, 14vw, 112px) no-repeat;
     background-repeat: no-repeat;
-    background-position: right bottom;
     filter: drop-shadow(0 -12px 24px rgba(122, 191, 250, .08));
     opacity: 1;
     z-index: 0;
