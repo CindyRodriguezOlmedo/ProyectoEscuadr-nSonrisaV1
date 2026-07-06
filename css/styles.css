@@ -440,8 +440,7 @@ textarea {
 
 .site-header {
   position: sticky;
-  top: 0;
-  z-index: 100;
+  top: 0;  z-index: 100;
   min-height: var(--header-h);
   background: rgba(255, 248, 242, .86);
   backdrop-filter: blur(18px);
@@ -1984,6 +1983,7 @@ p {
     left: -2%;
     bottom: 9%;
   }
+}
 
 .home-trust-section {
   padding-top: 14px;
@@ -5666,32 +5666,43 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
   .hero-photo-blob {
     top: auto;
-    right: -28px;
-    bottom: 78px;
-    width: clamp(96px, 31vw, 138px);
-    height: clamp(96px, 31vw, 138px);
-    border-radius: 0;
-    background: url("../assets/puzzles/puzzle-yellow.png") center / contain no-repeat;
+    right: -24px;
+    bottom: 70px;
+    width: clamp(90px, 28vw, 132px);
+    height: clamp(90px, 28vw, 132px);
+    border-radius: 50%;
+    background: radial-gradient(circle at 25% 30%, rgba(255, 209, 229, .34) 0%, transparent 40%),
+                radial-gradient(circle at 68% 45%, rgba(185, 236, 255, .24) 0%, transparent 40%),
+                radial-gradient(circle at 50% 75%, rgba(255, 245, 198, .24) 0%, transparent 42%);
     box-shadow: none;
-    opacity: .22;
-    transform: rotate(-12deg);
-    filter: blur(.1px) drop-shadow(0 16px 24px rgba(74, 78, 122, .06));
+    opacity: .28;
+    transform: none;
+    filter: blur(.1px) drop-shadow(0 12px 22px rgba(74, 78, 122, .06));
   }
 
   .hero-doctor {
     top: auto;
     right: 0;
-    bottom: -14px;
-    width: min(61vw, 248px);
+    bottom: 0;
+    width: min(62vw, 248px);
     max-width: none;
   }
 
   .hero-ground-wave {
-    left: calc(-100vw + 100%);
+    left: 0;
     bottom: 0;
-    width: 220vw;
-    height: 154px;
-    opacity: .72;
+    width: 100%;
+    height: 240px;
+    opacity: 1;
+    background:
+      radial-gradient(circle at 15% 30%, rgba(255, 176, 217, .28) 0%, transparent 24%),
+      radial-gradient(circle at 38% 20%, rgba(182, 227, 255, .26) 0%, transparent 22%),
+      radial-gradient(circle at 60% 26%, rgba(255, 236, 185, .24) 0%, transparent 24%),
+      radial-gradient(circle at 80% 18%, rgba(206, 249, 227, .22) 0%, transparent 20%),
+      linear-gradient(180deg, rgba(255, 239, 240, .26) 0%, rgba(236, 242, 255, .18) 54%, rgba(228, 255, 244, .16) 100%);
+    background-repeat: no-repeat;
+    background-position: center bottom;
+    filter: drop-shadow(0 -12px 24px rgba(122, 191, 250, .08));
   }
 
   .hero-dots {
@@ -5743,23 +5754,176 @@ body:not(.page-consejos) #experiencia + .soft-band {
   }
 
   .hero-copy {
-    padding-bottom: clamp(202px, 30svh, 258px);
+    padding-bottom: clamp(186px, 32svh, 248px);
   }
 
   .hero-media {
-    min-height: clamp(342px, 51svh, 452px);
+    top: auto;
+    bottom: 0;
+    min-height: clamp(360px, 52svh, 440px);
   }
 
   .hero-photo-blob {
     right: -24px;
-    bottom: 74px;
-    width: clamp(88px, 29vw, 112px);
-    height: clamp(88px, 29vw, 112px);
+    bottom: 70px;
+    width: clamp(86px, 30vw, 110px);
+    height: clamp(86px, 30vw, 110px);
+    border-radius: 50%;
+    background: radial-gradient(circle at 25% 30%, rgba(255, 209, 229, .32) 0%, transparent 40%),
+                radial-gradient(circle at 68% 45%, rgba(185, 236, 255, .22) 0%, transparent 40%),
+                radial-gradient(circle at 52% 75%, rgba(255, 245, 198, .22) 0%, transparent 42%);
+    opacity: .28;
+    transform: none;
+    filter: blur(.1px) drop-shadow(0 12px 22px rgba(74, 78, 122, .06));
   }
 
   .hero-doctor {
-    bottom: -22px;
-    width: min(56vw, 206px);
+    top: auto;
+    right: 0;
+    bottom: 0;
+    width: min(58vw, 222px);
+    z-index: 2;
+  }
+}
+
+/* Ajustes específicos para pantallas pequeñas (ej.: Samsung A35 ~412px) */
+@media (min-width: 391px) and (max-width: 420px) {
+  .hero-copy {
+    max-width: 34%;
+    padding-right: 4px;
+    padding-bottom: 180px;
+  }
+
+  .hero-copy h1 {
+    word-break: keep-all;
+    font-size: clamp(2.45rem, 8vw, 3.5rem);
+    line-height: 1.04;
+  }
+
+  .hero-doctor {
+    width: min(72vw, 262px);
+    right: -8px;
+    top: auto;
+    bottom: 0;
+    transform: translateZ(0);
+    z-index: 2;
+  }
+
+  .hero-media {
+    top: auto;
+    right: -12px;
+    bottom: 0;
+    min-height: 460px;
+    width: 74%;
+  }
+
+  .hero-photo-blob {
+    right: -14px;
+    bottom: 60px;
+    width: clamp(106px, 32vw, 162px);
+    height: clamp(106px, 32vw, 162px);
+    opacity: .30;
+  }
+}
+
+@media (min-width: 366px) and (max-width: 390px) {
+  .hero-doctor {
+    width: min(68vw, 236px);
+    right: -8px;
+    top: auto;
+    bottom: 0;
+  }
+
+  .hero-media {
+    top: auto;
+    right: -12px;
+    bottom: 0;
+    min-height: clamp(426px, 53svh, 465px);
+    width: 72%;
+  }
+
+  .hero-photo-blob {
+    right: -16px;
+    bottom: 58px;
+    width: clamp(98px, 30vw, 142px);
+    height: clamp(98px, 30vw, 142px);
+  }
+}
+
+/* Ajustes adicionales para evitar choque en móviles pequeños (ej.: Samsung A35) */
+@media (min-width: 421px) and (max-width: 440px) {
+  .hero-copy {
+    max-width: 34%;
+    padding-right: 4px;
+    padding-bottom: 170px;
+  }
+
+  .hero-copy h1 {
+    font-size: clamp(2.55rem, 7vw, 3.5rem);
+    line-height: 1.04;
+    margin-right: 6px;
+  }
+
+  .hero-doctor {
+    width: min(70vw, 252px);
+    right: -10px;
+    top: -10px;
+    bottom: auto;
+    box-shadow: 0 18px 28px rgba(74,78,122,.08);
+    z-index: 2;
+  }
+
+  .hero-media {
+    top: 118px;
+    right: -16px;
+    min-height: 380px;
+    width: 72%;
+  }
+
+  .hero-photo-blob {
+    right: -6px;
+    bottom: 60px;
+    width: clamp(104px, 28vw, 160px);
+    height: clamp(104px, 28vw, 160px);
+    opacity: .28;
+  }
+}
+
+/* Mejor control de la decoración en móvil */
+@media (max-width: 679px) {
+  .hero-ground-wave {
+    display: block;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 240px;
+    background:
+      radial-gradient(circle at 18% 30%, rgba(255, 176, 217, .32) 0%, transparent 24%),
+      radial-gradient(circle at 38% 20%, rgba(182, 227, 255, .28) 0%, transparent 22%),
+      radial-gradient(circle at 60% 26%, rgba(255, 236, 185, .28) 0%, transparent 24%),
+      radial-gradient(circle at 80% 18%, rgba(206, 249, 227, .26) 0%, transparent 20%),
+      url("../assets/puzzles/puzzle-yellow.png") right bottom / clamp(90px, 18vw, 150px) no-repeat;
+    background-repeat: no-repeat;
+    background-position: right bottom;
+    filter: drop-shadow(0 -12px 24px rgba(122, 191, 250, .08));
+    opacity: 1;
+    z-index: 0;
+  }
+}
+
+/* Ola en desktop ampliada */
+@media (min-width: 920px) {
+  .hero::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: 1;
+    width: 100%;
+    height: 180px;
+    pointer-events: none;
+    background: url("data:image/svg+xml,%3Csvg width='1000' height='190' viewBox='0 0 1000 190' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 119C130 92 220 58 340 74C460 90 480 151 600 153C750 156 820 93 950 72C980 63 1000 65 1000 72V190H0V119Z' fill='%23BFEAF5' fill-opacity='.74'/%3E%3Cpath d='M0 137C130 107 230 73 340 88C410 102 480 161 600 164C750 166 850 111 940 91C980 80 1000 81 1000 90V190H0V137Z' fill='%23EAF8FE' fill-opacity='.9'/%3E%3C/svg%3E") left bottom / 100% 100% no-repeat;
+    filter: drop-shadow(0 -18px 36px rgba(122, 191, 250, .1));
   }
 }
 
