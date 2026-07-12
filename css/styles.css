@@ -6432,11 +6432,11 @@ body:not(.page-consejos) #experiencia + .soft-band {
   }
 
   .hero-media {
-    right: -12px;
+    right: -22px;
   }
 
   .hero-doctor {
-    right: -6px;
+    right: -18px;
   }
 
   .hero-photo-blob {
@@ -6516,9 +6516,9 @@ body:not(.page-consejos) #experiencia + .soft-band {
   .home-trust-section {
     position: relative;
     z-index: 8;
-    margin-top: -112px;
+    margin-top: -72px;
     padding-top: 0;
-    padding-bottom: 22px;
+    padding-bottom: 0;
     background: transparent;
   }
 
@@ -6563,8 +6563,23 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
 @media (max-width: 380px) {
   .home-trust-section {
-    margin-top: -126px;
-    padding-bottom: 20px;
+    margin-top: -86px;
+    padding-bottom: 0;
+  }
+}
+
+@media (min-width: 391px) and (max-width: 420px) {
+  .hero-media {
+    right: -18px;
+  }
+
+  .hero-doctor {
+    right: -14px;
+  }
+
+  .home-trust-section {
+    margin-top: -68px;
+    padding-bottom: 0;
   }
 }
 
