@@ -6768,9 +6768,39 @@ body:not(.page-consejos) #experiencia + .soft-band {
   }
 
   .hero {
+    position: relative;
     min-height: 760px;
     padding-top: 44px;
     padding-bottom: 36px;
+    background:
+      radial-gradient(circle at 10% 18%, rgba(191, 234, 245, .36), transparent 260px),
+      radial-gradient(circle at 84% 22%, rgba(255, 232, 163, .42), transparent 300px),
+      radial-gradient(circle at 70% 65%, rgba(255, 176, 104, .2), transparent 320px),
+      radial-gradient(circle at 24% 82%, rgba(216, 199, 255, .18), transparent 260px),
+      linear-gradient(180deg, rgba(255, 250, 247, .96), rgba(255, 255, 255, .9) 48%, rgba(238, 250, 255, .54));
+  }
+
+  .hero::before {
+    content: "";
+    position: absolute;
+    left: 44px;
+    top: 102px;
+    width: min(58vw, 760px);
+    height: 430px;
+    z-index: 0;
+    border-radius: 36% 64% 54% 46% / 48% 42% 58% 52%;
+    background:
+      radial-gradient(circle at 16% 22%, rgba(191, 234, 245, .28), transparent 34%),
+      radial-gradient(circle at 80% 18%, rgba(255, 232, 163, .22), transparent 36%),
+      linear-gradient(135deg, rgba(255, 255, 255, .56), rgba(216, 199, 255, .11));
+    filter: blur(.4px);
+    opacity: .78;
+    pointer-events: none;
+  }
+
+  .hero > * {
+    position: relative;
+    z-index: 1;
   }
 
   .hero-grid {
@@ -6788,12 +6818,33 @@ body:not(.page-consejos) #experiencia + .soft-band {
   .hero-copy .eyebrow {
     padding: 10px 20px;
     font-size: .82rem;
+    color: #7c63d7;
+    background:
+      linear-gradient(90deg, rgba(216, 199, 255, .7), rgba(255, 255, 255, .82));
+    box-shadow: 0 14px 34px rgba(126, 111, 208, .11);
   }
 
   .hero-copy h1 {
     max-width: 8.5em;
     font-size: clamp(4.2rem, 5.15vw, 5.85rem);
     line-height: .95;
+    color: #575c98;
+    text-shadow: 0 10px 26px rgba(74, 78, 122, .045);
+  }
+
+  .hero-copy h1 mark {
+    background: linear-gradient(135deg, #62b9fb, #78c6ff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    filter: drop-shadow(0 8px 18px rgba(98, 185, 251, .12));
+  }
+
+  .hero-copy h1 em {
+    background: linear-gradient(135deg, #6869a9, #8a70dd);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    filter: drop-shadow(0 8px 18px rgba(126, 111, 208, .1));
   }
 
   .hero-title-heart {
@@ -6824,13 +6875,38 @@ body:not(.page-consejos) #experiencia + .soft-band {
     font-size: 1rem;
   }
 
+  .hero .btn-primary {
+    background:
+      linear-gradient(135deg, #58b9ff 0%, #5f86f4 74%, #7e6fd0 100%);
+    box-shadow:
+      0 18px 36px rgba(91, 153, 245, .24),
+      inset 0 1px 0 rgba(255, 255, 255, .42);
+  }
+
+  .hero-services-btn {
+    background: rgba(255, 255, 255, .7);
+    border-color: rgba(142, 102, 232, .72);
+    color: #5f56a0;
+    box-shadow: 0 16px 34px rgba(126, 111, 208, .085);
+  }
+
   .hero-photo-blob {
-    right: 3%;
-    top: 10%;
-    width: 76%;
-    height: 78%;
-    opacity: .68;
+    right: 7%;
+    top: 8%;
+    width: 68%;
+    height: 84%;
+    opacity: .82;
+    border-radius: 34% 66% 43% 57% / 64% 34% 66% 36%;
+    background:
+      radial-gradient(circle at 26% 18%, rgba(255, 255, 255, .7), transparent 30%),
+      radial-gradient(circle at 76% 24%, rgba(255, 221, 139, .48), transparent 34%),
+      radial-gradient(circle at 32% 80%, rgba(255, 176, 104, .36), transparent 38%),
+      linear-gradient(135deg, rgba(255, 232, 163, .5), rgba(255, 205, 146, .36) 50%, rgba(191, 234, 245, .16));
+    box-shadow:
+      inset 24px 26px 52px rgba(255, 255, 255, .5),
+      0 24px 60px rgba(255, 184, 106, .09);
     filter: blur(.1px);
+    transform: rotate(-5deg) skewX(-3deg);
   }
 
   .hero-doctor {
@@ -6850,7 +6926,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
     width: 118px;
     height: 118px;
     background: url("../assets/puzzles/puzzle-green.png") center / contain no-repeat;
-    opacity: .22;
+    opacity: .32;
     --puzzle-rotate: 16deg;
   }
 
@@ -6861,7 +6937,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
     width: 96px;
     height: 96px;
     background: url("../assets/puzzles/puzzle-blue.png") center / contain no-repeat;
-    opacity: .18;
+    opacity: .24;
     --puzzle-rotate: 12deg;
   }
 
@@ -7135,6 +7211,52 @@ body:not(.page-consejos) #experiencia + .soft-band {
   }
 }
 
+/* Desktop: galería más equilibrada, dos fotos por fila. */
+@media (min-width: 920px) {
+  .team-hero-section .team-portrait {
+    height: 360px;
+    padding: 0;
+    align-self: center;
+  }
+
+  .team-hero-section .team-portrait img {
+    height: 100%;
+    object-fit: contain;
+    object-position: center center;
+  }
+
+  .page-galeria .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    max-width: 1080px;
+    gap: 28px;
+  }
+
+  .page-galeria .gallery-item {
+    aspect-ratio: 4 / 3;
+    border-radius: 30px;
+    box-shadow: 0 20px 48px rgba(74, 78, 122, .1);
+  }
+
+  .page-galeria .gallery-item img {
+    height: 100%;
+    aspect-ratio: auto;
+    object-fit: cover;
+  }
+
+  .page-galeria .gallery-temp figcaption {
+    left: 24px;
+    right: 24px;
+    bottom: 22px;
+    gap: 8px;
+    font-size: 1.28rem;
+  }
+
+  .page-galeria .gallery-temp figcaption span {
+    padding: 8px 12px;
+    font-size: .82rem;
+  }
+}
+
 /* Inicio: hacer que Equipo Escuadrón invite más a conocer al equipo. */
 #equipo-preview .brand-story {
   background:
@@ -7212,6 +7334,286 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
   #equipo-preview .story-copy {
     gap: 10px;
+  }
+}
+
+/* Desktop: contacto y preview del equipo con una composición más profesional. */
+@media (min-width: 920px) {
+  .page-contacto .contact-hero-section {
+    position: relative;
+    overflow: hidden;
+    padding-top: 70px;
+    padding-bottom: 24px;
+    background:
+      radial-gradient(circle at 12% 22%, rgba(191, 234, 245, .16), transparent 230px),
+      radial-gradient(circle at 92% 36%, rgba(255, 232, 163, .16), transparent 250px);
+  }
+
+  .page-contacto .contact-hero-section .two-col {
+    max-width: 1180px;
+    grid-template-columns: minmax(420px, .86fr) minmax(460px, .76fr);
+    align-items: start;
+    gap: 64px;
+  }
+
+  .page-contacto .contact-hero-section .stack {
+    max-width: 610px;
+    gap: 18px;
+  }
+
+  .page-contacto .contact-hero-section h1 {
+    max-width: 10.5ch;
+    font-size: clamp(4rem, 5.2vw, 5.6rem);
+    line-height: .96;
+  }
+
+  .page-contacto .contact-hero-section .lead {
+    max-width: 35rem;
+    font-size: 1.13rem;
+    line-height: 1.7;
+  }
+
+  .page-contacto .actions {
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .page-contacto .actions .btn {
+    min-height: 52px;
+    padding-inline: 22px;
+    border-radius: 20px;
+    font-size: .92rem;
+  }
+
+  .page-contacto .info-card {
+    width: 100%;
+    max-width: none;
+    margin-top: 34px;
+    padding: 26px;
+    border-radius: 30px;
+    background:
+      radial-gradient(circle at 96% 0%, rgba(255, 232, 163, .28), transparent 140px),
+      linear-gradient(145deg, rgba(255, 255, 255, .96), rgba(240, 250, 255, .88));
+    border: 1px solid rgba(255, 255, 255, .9);
+    box-shadow: 0 22px 54px rgba(74, 78, 122, .09);
+  }
+
+  .page-contacto .info-card > h3 {
+    font-size: 1.28rem;
+    margin-bottom: 14px;
+  }
+
+  .page-contacto .info-card .benefits {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .page-contacto .benefit {
+    min-height: 96px;
+    grid-template-columns: 76px minmax(0, 1fr);
+    border-radius: 24px;
+    background: rgba(255, 255, 255, .78);
+    border: 1px solid rgba(214, 225, 240, .82);
+    box-shadow: 0 12px 26px rgba(74, 78, 122, .055);
+  }
+
+  .page-contacto .benefit > div {
+    padding: 17px 20px 17px 0;
+  }
+
+  .page-contacto .mark.contact-icon {
+    width: 76px;
+    min-height: 96px;
+    border-radius: 24px 0 0 24px;
+  }
+
+  .page-contacto .contact-icon::before {
+    width: 28px;
+    height: 28px;
+  }
+
+  .page-contacto .contact-map-section {
+    padding-top: 18px;
+    padding-bottom: 54px;
+  }
+
+  .contact-map-card {
+    max-width: 1120px;
+    grid-template-columns: minmax(260px, .35fr) minmax(0, 1fr);
+    gap: 30px;
+    padding: 30px;
+    border-radius: 34px;
+    background:
+      radial-gradient(circle at 8% 18%, rgba(255, 232, 163, .28), transparent 150px),
+      radial-gradient(circle at 100% 100%, rgba(191, 234, 245, .3), transparent 220px),
+      rgba(255, 255, 255, .94);
+    box-shadow: 0 28px 70px rgba(74, 78, 122, .095);
+  }
+
+  .contact-map-card .map-heading {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 32px 26px;
+    border-radius: 26px;
+    background: linear-gradient(160deg, rgba(255, 255, 255, .78), rgba(232, 246, 255, .52));
+    border: 1px solid rgba(255, 255, 255, .88);
+  }
+
+  .contact-map-card .map-heading strong {
+    white-space: normal;
+    font-size: 1.35rem;
+    line-height: 1.08;
+  }
+
+  .contact-map-card .map-heading p {
+    max-width: 22rem;
+    margin-top: 12px;
+    font-size: .98rem;
+    line-height: 1.55;
+  }
+
+  .contact-map-card .map {
+    min-height: 430px;
+    height: 100%;
+    border-radius: 28px;
+    box-shadow: 0 16px 36px rgba(74, 78, 122, .09);
+  }
+
+  .contact-map-puzzle {
+    left: 198px;
+    top: 24px;
+    width: 108px;
+    height: 108px;
+    opacity: .34;
+  }
+
+  #equipo-preview .brand-story {
+    max-width: 1120px;
+    padding: 46px 52px;
+  }
+
+  #equipo-preview .story-copy {
+    grid-template-columns: minmax(350px, .66fr) minmax(500px, .98fr);
+    column-gap: 56px;
+  }
+
+  #equipo-preview .story-copy h2 {
+    max-width: 12ch;
+    font-size: clamp(3rem, 3.8vw, 4.35rem);
+  }
+
+  #equipo-preview .story-media {
+    height: 380px;
+    max-width: none;
+    border-radius: 32px;
+  }
+
+  #equipo-preview .story-media img {
+    width: 112%;
+    height: 104%;
+    transform: translateY(4px);
+  }
+}
+
+/* Desktop: ordenar el bloque superior de Servicios sin tocar la sección de etapas. */
+@media (min-width: 920px) {
+  .page-servicios main > .section:first-child {
+    padding-top: 70px;
+    padding-bottom: 78px;
+  }
+
+  .page-servicios .service-hero {
+    max-width: 1120px;
+    grid-template-columns: minmax(360px, .68fr) minmax(500px, 1fr);
+    gap: 58px;
+    align-items: center;
+    padding: 42px 52px;
+    border-radius: 36px;
+    background:
+      radial-gradient(circle at 92% 12%, rgba(216, 199, 255, .18), transparent 180px),
+      radial-gradient(circle at 8% 88%, rgba(191, 234, 245, .22), transparent 190px),
+      linear-gradient(145deg, rgba(255, 255, 255, .78), rgba(255, 250, 247, .92));
+    border: 1px solid rgba(255, 255, 255, .86);
+    box-shadow: 0 24px 64px rgba(74, 78, 122, .075);
+  }
+
+  .page-servicios .service-hero .section-head {
+    max-width: 520px;
+    gap: 14px;
+  }
+
+  .page-servicios .service-hero h1 {
+    max-width: 9.8ch;
+    font-size: clamp(3.1rem, 3.55vw, 4.05rem);
+    line-height: .98;
+  }
+
+  .page-servicios .service-hero h1 .nowrap {
+    white-space: normal;
+  }
+
+  .page-servicios .service-hero .lead {
+    max-width: 35ch;
+    font-size: 1.08rem;
+    line-height: 1.62;
+  }
+
+  .page-servicios .service-promise {
+    width: 100%;
+    max-width: none;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    align-self: center;
+  }
+
+  .page-servicios .service-promise-card {
+    min-height: 184px;
+    padding: 22px 18px 20px;
+    border-radius: 26px;
+    box-shadow: 0 16px 38px rgba(74, 78, 122, .08);
+  }
+
+  .page-servicios .service-promise-card .promise-icon {
+    width: 62px;
+    height: 62px;
+    margin-bottom: 8px;
+  }
+
+  .page-servicios .service-promise-card strong {
+    font-size: 1rem;
+  }
+
+  .page-servicios .service-promise-card small {
+    max-width: 13ch;
+    line-height: 1.18;
+  }
+
+  .page-servicios .service-promise-card em {
+    margin-top: 8px;
+  }
+
+  .page-servicios .service-hero::before {
+    right: 28px;
+    top: 34px;
+    opacity: .1;
+  }
+
+  .page-servicios .service-hero::after {
+    left: 30px;
+    bottom: 28px;
+    opacity: .11;
+  }
+
+  .page-servicios .service-patients-section .container {
+    max-width: 1120px;
+    grid-template-columns: minmax(280px, .42fr) minmax(0, 1fr);
+    gap: 44px;
+  }
+
+  .page-servicios .care-track {
+    width: 100%;
   }
 }
 

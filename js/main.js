@@ -458,6 +458,23 @@ if (wizard) {
     return true;
   };
 
+  const getCurrentStepFields = () => Array.from(steps[current].querySelectorAll("input, select, textarea"))
+    .filter((field) => !field.disabled && !field.closest("[hidden]"));
+
+  const focusNextWizardControl = (field) => {
+    const fields = getCurrentStepFields();
+    const index = fields.indexOf(field);
+    if (index === -1) return;
+
+    const nextControl = fields[index + 1] || (current === steps.length - 1 ? send : next);
+    if (!nextControl || nextControl.hidden) return;
+
+    window.setTimeout(() => {
+      nextControl.focus({ preventScroll: true });
+      nextControl.scrollIntoView({ behavior: "smooth", block: "center" });
+    }, 80);
+  };
+
   next.addEventListener("click", () => {
     if (!stepIsValid()) return;
     current = Math.min(current + 1, steps.length - 1);
@@ -476,6 +493,14 @@ if (wizard) {
       clearFieldInvalid(field);
       if (feedback) feedback.textContent = "";
       if (field === age) updatePatientTypeFields();
+      if (field.tagName === "SELECT" && field.value) {
+        focusNextWizardControl(field);
+      }
+    });
+    field.addEventListener("keydown", (event) => {
+      if (event.key !== "Enter" || field.tagName === "TEXTAREA") return;
+      event.preventDefault();
+      focusNextWizardControl(field);
     });
   });
 
