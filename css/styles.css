@@ -6484,7 +6484,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
   .hero-shell::after {
     left: 85%;
     right: auto;
-    bottom: 482px;
+    bottom: 523px;
     z-index: 1;
     width: clamp(74px, 21vw, 104px);
     height: clamp(74px, 21vw, 104px);
