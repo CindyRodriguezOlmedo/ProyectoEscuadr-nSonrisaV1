@@ -6328,7 +6328,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
     width: 30px;
     height: 18px;
     margin-top: -10px;
-    margin-left: 58px;
+    margin-left: clamp(78px, 20.5vw, 88px);
     border-width: 3px;
   }
 
@@ -6345,15 +6345,15 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
   .hero .btn-primary,
   .hero-services-btn {
-    min-height: 28px;
-    border-radius: 12px;
-    font-size: .54rem;
+    min-height: 36px;
+    border-radius: 15px;
+    font-size: .58rem;
   }
 
   .hero .btn-primary {
     grid-template-columns: 12px minmax(0, 1fr) 10px;
     gap: 5px;
-    padding: 5px 9px;
+    padding: 8px 9px;
   }
 
   .hero .btn-primary::after {
@@ -6366,7 +6366,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
   }
 
   .hero-services-btn {
-    padding: 5px 9px;
+    padding: 8px 9px;
   }
 
   .hero-media {
@@ -6399,7 +6399,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
   .hero::before {
     right: 18px;
-    top: 82px;
+    top: 42px;
     z-index: 1;
     width: clamp(76px, 22vw, 112px);
     height: clamp(76px, 22vw, 112px);
@@ -6461,7 +6461,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
   .home-trust-section {
     position: relative;
     z-index: 8;
-    margin-top: -74px;
+    margin-top: -92px;
     padding-top: 0;
     padding-bottom: 38px;
     background: transparent;
@@ -6504,7 +6504,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
 @media (max-width: 380px) {
   .home-trust-section {
-    margin-top: -88px;
+    margin-top: -108px;
     padding-bottom: 34px;
   }
 }
