@@ -921,17 +921,7 @@ p {
 }
 
 .hero-copy h1 span:first-child::after {
-  content: "♡";
-  position: absolute;
-  right: -30px;
-  top: -.16em;
-  color: #f18aa3;
-  font-family: var(--body-font);
-  font-size: .62em;
-  font-weight: 800;
-  line-height: 1;
-  transform: rotate(18deg);
-  opacity: .86;
+  content: none;
 }
 
 .hero-copy h1 mark {
@@ -6055,7 +6045,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
 .hero-copy h1 {
   max-width: 8.8em;
-  color: #292d63;
+  color: #444a86;
   font-size: clamp(2.45rem, 10.1vw, 3.82rem);
   line-height: .96;
   letter-spacing: 0;
@@ -6072,27 +6062,24 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
 .hero-copy h1 mark {
   display: block;
-  color: #64aff7;
+  color: #63aef7;
   line-height: .98;
 }
 
 .hero-copy h1 em {
-  display: block;
-  color: #8d65e7;
+  position: relative;
+  display: inline-block;
+  color: #444a86;
   font-style: normal;
   line-height: .98;
 }
 
+.hero-copy h1 em::after {
+  content: none;
+}
+
 .hero-title-heart {
-  display: block;
-  width: clamp(46px, 12vw, 74px);
-  height: clamp(25px, 6.4vw, 36px);
-  margin-top: -14px;
-  margin-left: clamp(58px, 17vw, 116px);
-  border: clamp(3px, .85vw, 5px) solid #ee86ac;
-  border-top: 0;
-  border-radius: 0 0 999px 999px;
-  transform: rotate(-1deg);
+  display: none;
 }
 
 .hero-copy .lead {
@@ -6155,10 +6142,27 @@ body:not(.page-consejos) #experiencia + .soft-band {
 }
 
 .hero-services-btn {
-  color: #2f3769;
-  background: transparent;
-  border: 1.8px solid rgba(142, 102, 232, .72);
-  box-shadow: none;
+  justify-content: center;
+  gap: 6px;
+  color: #4b3f90;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(231, 220, 255, .88));
+  border: 2px solid rgba(142, 102, 232, .78);
+  box-shadow:
+    0 12px 26px rgba(126, 111, 208, .14),
+    inset 0 0 0 1px rgba(255, 255, 255, .72);
+}
+
+.hero-services-btn::before {
+  content: none;
+}
+
+.hero-services-btn::after {
+  content: "→";
+  margin-left: 2px;
+  color: #8e66e8;
+  font-size: 1em;
+  line-height: 1;
 }
 
 .hero .btn-primary:hover,
@@ -6172,7 +6176,8 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
 .hero-services-btn:hover {
   border-color: rgba(142, 102, 232, .94);
-  background: rgba(255, 255, 255, .34);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, .94), rgba(232, 220, 255, .9));
 }
 
 .hero-media {
@@ -6324,12 +6329,67 @@ body:not(.page-consejos) #experiencia + .soft-band {
 }
 
 @media (max-width: 679px) {
+  :root {
+    --header-h: 64px;
+  }
+
+  .site-header {
+    min-height: var(--header-h);
+    box-shadow: 0 10px 24px rgba(74, 78, 122, .035);
+  }
+
+  .nav-shell {
+    min-height: var(--header-h);
+    padding: 6px 10px;
+  }
+
+  .brand {
+    gap: 8px;
+    max-width: min(68vw, 286px);
+  }
+
+  .brand-mark {
+    width: 40px;
+    height: 40px;
+    flex-basis: 40px;
+  }
+
+  .brand-wordmark {
+    width: clamp(150px, 46vw, 218px);
+    max-height: 36px;
+  }
+
+  .menu-toggle {
+    width: 32px;
+    height: 32px;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .menu-toggle span,
+  .menu-toggle::before,
+  .menu-toggle::after {
+    width: 22px;
+    height: 2.4px;
+    color: #2f3142;
+    border-radius: 999px;
+    box-shadow: none;
+  }
+
+  .menu-toggle span {
+    width: 22px;
+    justify-self: center;
+    margin-right: 0;
+  }
+
   .hero-title-heart {
-    width: 30px;
-    height: 18px;
-    margin-top: -10px;
-    margin-left: clamp(78px, 20.5vw, 88px);
-    border-width: 3px;
+    display: none;
+  }
+
+  .hero-copy h1 em::after {
+    content: none;
   }
 
   .hero-copy .lead {
@@ -6367,6 +6427,8 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
   .hero-services-btn {
     padding: 8px 9px;
+    gap: 5px;
+    font-weight: 1000;
   }
 
   .hero-media {
@@ -6398,14 +6460,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
   }
 
   .hero::before {
-    right: 18px;
-    top: 42px;
-    z-index: 1;
-    width: clamp(76px, 22vw, 112px);
-    height: clamp(76px, 22vw, 112px);
-    background-image: url("../assets/puzzles/puzzle-green.png");
-    opacity: .32;
-    --puzzle-rotate: 18deg;
+    content: none;
   }
 
   .hero::after {
@@ -6415,7 +6470,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
     width: clamp(62px, 18vw, 88px);
     height: clamp(62px, 18vw, 88px);
     background-image: url("../assets/puzzles/puzzle-pink.png");
-    opacity: .24;
+    opacity: .34;
     --puzzle-rotate: 14deg;
     animation-delay: -1.8s;
   }
@@ -6427,7 +6482,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
     width: clamp(96px, 27vw, 132px);
     height: clamp(96px, 27vw, 132px);
     background-image: url("../assets/puzzles/puzzle-yellow.png");
-    opacity: .32;
+    opacity: .42;
     --puzzle-rotate: -18deg;
     animation-delay: -3s;
   }
@@ -6440,7 +6495,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
     width: clamp(74px, 21vw, 104px);
     height: clamp(74px, 21vw, 104px);
     background-image: url("../assets/puzzles/puzzle-blue.png");
-    opacity: .28;
+    opacity: .38;
     --puzzle-rotate: 12deg;
     animation-delay: -4.5s;
   }
@@ -6461,10 +6516,14 @@ body:not(.page-consejos) #experiencia + .soft-band {
   .home-trust-section {
     position: relative;
     z-index: 8;
-    margin-top: -92px;
+    margin-top: -112px;
     padding-top: 0;
-    padding-bottom: 38px;
+    padding-bottom: 22px;
     background: transparent;
+  }
+
+  #equipo-preview {
+    padding-top: 8px;
   }
 
   .home-trust-panel {
@@ -6504,8 +6563,8 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
 @media (max-width: 380px) {
   .home-trust-section {
-    margin-top: -108px;
-    padding-bottom: 34px;
+    margin-top: -126px;
+    padding-bottom: 20px;
   }
 }
 
@@ -6674,4 +6733,14 @@ body:not(.page-consejos) #experiencia + .soft-band {
   .hero-services-btn {
     transition: none;
   }
+}
+
+/* Ajuste final: navy más suave para que el título no pese sobre la paleta pastel. */
+.hero .hero-copy h1,
+.hero .hero-copy h1 em {
+  color: #555c97;
+}
+
+.hero .hero-copy h1 mark {
+  color: #67b5fa;
 }
