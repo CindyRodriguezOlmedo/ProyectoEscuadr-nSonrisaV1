@@ -155,8 +155,9 @@ if (monthlyNews) {
 }
 
 const promoSection = document.querySelector("#promo");
+const promoConfettiTarget = promoSection?.querySelector("[data-monthly-news]") || promoSection;
 
-if (promoSection && "IntersectionObserver" in window) {
+if (promoConfettiTarget && "IntersectionObserver" in window) {
   let promoConfettiPlayed = false;
   const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   let promoAudioContext = null;
@@ -276,9 +277,12 @@ if (promoSection && "IntersectionObserver" in window) {
       celebratePromo();
       promoObserver.disconnect();
     }
-  }, { threshold: .45 });
+  }, {
+    threshold: .68,
+    rootMargin: "0px 0px -12% 0px"
+  });
 
-  promoObserver.observe(promoSection);
+  promoObserver.observe(promoConfettiTarget);
 }
 
 if ("IntersectionObserver" in window) {
