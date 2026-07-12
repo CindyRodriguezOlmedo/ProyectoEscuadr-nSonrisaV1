@@ -318,11 +318,21 @@ if (wizard) {
   let current = 0;
 
   const scrollWizardIntoView = () => {
-    const activeStep = steps[current];
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    (activeStep || wizard).scrollIntoView({
+    const header = document.querySelector(".site-header");
+    const headerHeight = header ? header.getBoundingClientRect().height : 0;
+    const minTop = headerHeight + 10;
+    const bottomBreathingRoom = 24;
+    const wizardHeight = wizard.getBoundingClientRect().height;
+    const targetViewportTop = Math.max(
+      minTop,
+      window.innerHeight - wizardHeight - bottomBreathingRoom
+    );
+    const top = wizard.getBoundingClientRect().top + window.scrollY - targetViewportTop;
+
+    window.scrollTo({
+      top: Math.max(0, top),
       behavior: prefersReducedMotion ? "auto" : "smooth",
-      block: "start"
     });
   };
 

@@ -3079,6 +3079,13 @@ p {
     linear-gradient(135deg, rgba(255, 255, 255, .9), rgba(232, 246, 255, .5));
   border-color: rgba(191, 234, 245, .58);
   box-shadow: 0 12px 26px rgba(74, 78, 122, .055);
+  align-items: center;
+}
+
+.team-hero-section .benefit > div {
+  display: grid;
+  align-content: center;
+  min-height: 100%;
 }
 
 .team-hero-section .benefit::before {
@@ -7104,6 +7111,27 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
   .hero-services-btn::after {
     content: none;
+  }
+}
+
+@media (max-width: 679px) {
+  .team-hero-section .team-portrait {
+    min-height: clamp(248px, 76vw, 324px);
+    padding: 0;
+    overflow: hidden;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at 16% 16%, rgba(255, 232, 163, .18), transparent 74px),
+      linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(232, 246, 255, .62));
+  }
+
+  .team-hero-section .team-portrait img {
+    width: 100%;
+    height: 100%;
+    min-height: clamp(248px, 76vw, 324px);
+    object-fit: contain;
+    object-position: center center;
+    transform: none;
   }
 }
 
