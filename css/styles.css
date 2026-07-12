@@ -1987,7 +1987,6 @@ p {
 #experiencia + .soft-band {
   padding-top: 8px;
 }
-}
 
 .btn {
   min-height: 52px;
@@ -6090,11 +6089,6 @@ body:not(.page-consejos) #experiencia + .soft-band {
   letter-spacing: 0;
 }
 
-.hero-copy .lead strong,
-.hero-copy .lead b {
-  color: #7e61d7;
-}
-
 .hero-copy .actions {
   display: grid;
   gap: 12px;
@@ -6407,7 +6401,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
   .hero-services-btn {
     min-height: 36px;
     border-radius: 15px;
-    font-size: .58rem;
+    font-size: .8rem;
   }
 
   .hero .btn-primary {
@@ -6477,7 +6471,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
 
   .hero-shell::before {
     left: 88px;
-    bottom: 42px;
+    bottom: 62px;
     z-index: 1;
     width: clamp(96px, 27vw, 132px);
     height: clamp(96px, 27vw, 132px);
@@ -6488,13 +6482,13 @@ body:not(.page-consejos) #experiencia + .soft-band {
   }
 
   .hero-shell::after {
-    left: 48%;
+    left: 7%;
     right: auto;
-    bottom: 142px;
+    bottom: 282px;
     z-index: 1;
     width: clamp(74px, 21vw, 104px);
     height: clamp(74px, 21vw, 104px);
-    background-image: url("../assets/puzzles/puzzle-blue.png");
+    background-image: url("../assets/puzzles/puzzle-green.png");
     opacity: .38;
     --puzzle-rotate: 12deg;
     animation-delay: -4.5s;
@@ -6529,7 +6523,7 @@ body:not(.page-consejos) #experiencia + .soft-band {
   .home-trust-panel {
     grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 0;
-    padding: 6px 6px;
+    padding: 1px 1px;
     border-radius: 20px;
     background: rgba(255, 255, 255, .9);
     box-shadow: 0 18px 42px rgba(74, 78, 122, .1);
